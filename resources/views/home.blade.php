@@ -20,7 +20,7 @@
             </div>
         </div>
         <ul class="nav-menu">
-            <li><a href="#akun">Akun</a></li>
+            <li><a href="{{ route('login') }}">Akun</a></li>
             <li><a href="#beranda" class="active">Beranda</a></li>
             <li><a href="#galeri">Galeri</a></li>
             <li><a href="#coffee">Coffee Shop</a></li>

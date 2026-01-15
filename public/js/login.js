@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const token = csrfToken ? csrfToken.getAttribute('content') : '';
 
         // Determine API endpoint
-        const apiUrl = formType === 'daftar' ? '/daftar' : '/login';
+        const apiUrl = formType === 'daftar' ? '/register' : '/login';
 
         // Function to show message
         function showMessage(message, isSuccess = true) {
