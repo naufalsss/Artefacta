@@ -52,7 +52,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
-            $redirectUrl = $user->role === 'admin' ? route('artifacts.index') : '/welcome';
+            $redirectUrl = $user->role === 'admin' ? route('artifacts.index') : route('home');
 
             return response()->json([
                 'success' => true,
@@ -65,5 +65,17 @@ class AuthController extends Controller
             'success' => false,
             'message' => 'Email atau password salah',
         ], 401);
+    }
+
+    // =====================
+    // LOGOUT
+    // =====================
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Logout berhasil');
     }
 }

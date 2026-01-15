@@ -17,7 +17,7 @@
             </div>
 
             <!-- Form Login (Default/Tampil Duluan) -->
-            <form id="loginForm" class="auth-form active" method="POST" action="{{ route('login') }}">
+            <form id="loginForm" class="auth-form active" method="POST" action="{{ route('login.submit') }}">
                 @csrf
                 
                 <div class="form-group">
@@ -64,7 +64,7 @@
             </form>
 
             <!-- Form Daftar -->
-            <form id="daftarForm" class="auth-form" method="POST" action="{{ route('daftar') }}">
+            <form id="daftarForm" class="auth-form" method="POST" action="{{ route('register.submit') }}">
                 @csrf
                 
                 <div class="form-group">
