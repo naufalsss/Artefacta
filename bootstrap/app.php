@@ -11,6 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Don't use CSRF middleware for now - causing issues with AJAX
+        // $middleware->web(append: [
+        //     \App\Http\Middleware\VerifyCsrfToken::class,
+        // ]);
+        
         $middleware->alias([
             'admin' => \App\Http\Middleware\CheckAdmin::class,
         ]);
