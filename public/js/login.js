@@ -392,9 +392,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log(`${formType === 'daftar' ? 'Daftar' : 'Login'} Data:`, data);
 
-        // Get CSRF token
-        const csrfToken = document.querySelector('meta[name="csrf-token"]');
-        const token = csrfToken ? csrfToken.getAttribute('content') : '';
+        // Get CSRF token (dari form atau meta tag)
+        let token = data['_token'] || '';
+        if (!token) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]');
+            token = csrfToken ? csrfToken.getAttribute('content') : '';
+        }
 
         // Determine API endpoint
         const apiUrl = formType === 'daftar' ? '/register' : '/login';
@@ -450,6 +453,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Send data to Laravel backend
+        console.log('Sending request with data:', data);
+        console.log('CSRF Token:', token);
+        
         fetch(apiUrl, {
             method: 'POST',
             headers: {
