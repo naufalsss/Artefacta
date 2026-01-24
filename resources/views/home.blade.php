@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museum Barli</title>
-    <link rel="stylesheet" href="{{ url('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -37,31 +37,61 @@
     </div>
 
     <div class="gallery-grid">
-        <div class="gallery-item item-wide">
-            <img src="{{asset('foto/landscape 2.jpg')}}" alt="Koleksi Museum">
+        <div class="gallery-item portrait">
+            <img src="{{ asset('foto/potrait.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Madonna with Saints</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-potrait">
-            <img src="{{asset('foto/potrait 3.jpg')}}" alt="Koleksi Museum">
+
+        <div class="gallery-item tall">
+            <img src="{{ asset('foto/tall.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Pallas and the Centaur</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-medium-tall">
-            <img src="{{asset('foto/potrait.jpg')}}" alt="Koleksi Museum">
+
+        <div class="gallery-item square">
+            <img src="{{ asset('foto/square.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Alessandro di Mariano</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-square">
-            <img src="{{ asset('foto/square 4.jpg') }}" alt="Koleksi Museum">
+
+        <div class="gallery-item tall">
+            <img src="{{ asset('foto/tall2.png') }}" alt="">
+           <div class="gallery-info">
+        <h4>The Adoration of the Magi</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-landscape">
-            <img src="{{ asset('foto/landscape.jpg')}}">
+
+        <div class="gallery-item portrait">
+            <img src="{{ asset('foto/potrait2.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Calumny of Apelles</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-potrait">
-            <img src="{{asset('foto/potrait.jpg')}}" alt="Koleksi Museum">
+
+        <div class="gallery-item square">
+            <img src="{{ asset('foto/square2.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Annunciation</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-medium-tall">
-            <img src="{{asset('foto/potrait.jpg')}}" alt="Koleksi Museum">
+
+        <div class="gallery-item portrait">
+            <img src="{{ asset('foto/potrait3.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Madonna with Saints</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-        <div class="gallery-item item-square">
-            <img src="{{asset('foto/square.jpg')}}" alt="Koleksi Museum">
+
+        <div class="gallery-item square">
+            <img src="{{ asset('foto/square3.png') }}" alt="">
+            <div class="gallery-info">
+        <h4>Alessandro di Mariano</h4>
+        <p>Lukisan religius era Renaissance dengan detail simbolik.</p>
         </div>
-    </div>
 </section>
 
 

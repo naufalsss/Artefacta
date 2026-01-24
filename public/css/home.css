@@ -243,86 +243,136 @@ header {
 /* =========================
    GALLERY SECTION
 ========================= */
-.museum-gallery {
-    background: linear-gradient(to bottom, #FFF8F0, #F8F4EF);
-    padding: 100px 8%;
+.gallery {
+    padding: 80px 8%;
 }
 
-.gallery-header {
-    text-align: center;
-    margin-bottom: 60px;
+.gallery h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 12px;
 }
 
-.gallery-header h2 {
-    font-size: 3rem;
-    color: #C41E3A;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.gallery-desc {
-    font-size: 1.1rem;
-    color: #5A4A44;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.7;
-}
-
+/* ===== GRID ===== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-flow: dense;
+    gap: 32px;
 }
 
+/* ITEM */
 .gallery-item {
     position: relative;
-    overflow: hidden;
-    border-radius: 16px;
     background: #fff;
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* IMAGE */
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    display: block;
+    transition: transform 0.5s ease;
 }
 
-.gallery-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(196, 30, 58, 0.25);
-}
-
+/* ZOOM */
 .gallery-item:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-/* Random sizes untuk gallery items */
-.gallery-item.item-potrait {
-    max-width: 210px;
-    max-height: 320px;
+/* OVERLAY */
+.gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.gallery-item.item-landscape {
-    max-width: 280px;
-    max-height: 520px;
+.gallery-item:hover::after {
+    opacity: 1;
 }
 
-.gallery-item.item-medium-tall {
-    aspect-ratio: 2/3;
+/* INFO */
+.gallery-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px;
+    color: #fff;
+    z-index: 2;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: all 0.4s ease;
 }
 
-.gallery-item.item-square {
-    aspect-ratio: 1/1;
+.gallery-item:hover .gallery-info {
+    transform: translateY(0);
+    opacity: 1;
 }
 
-.gallery-item.item-wide {
-    max-width: 590px;
-    max-height: 210px;
+.gallery-info h4 {
+    font-size: 1rem;
+    margin-bottom: 6px;
 }
+
+.gallery-info p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+/* UKURAN — DESKTOP ONLY */
+.gallery-item.portrait { aspect-ratio: 3 / 4; }
+.gallery-item.square   { aspect-ratio: 1 / 1; }
+.gallery-item.tall     { aspect-ratio: 2 / 3; }
+.gallery-item.wide     { aspect-ratio: 3 / 1; }
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .gallery-item.wide {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* HP — DINORMALISASI TOTAL */
+@media (max-width: 600px) {
+    .gallery {
+        padding: 60px 5%;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+        aspect-ratio: 3 / 4;
+    }
+
+    .gallery-item::after {
+        opacity: 1;
+    }
+
+    .gallery-info {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* =========================
    LOCATION SECTION
