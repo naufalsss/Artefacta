@@ -16,5 +16,11 @@
             <li><a href="{{ route('home') }}#pemesanan">Pemesanan</a></li>
             <li><a href="{{ route('home') }}#tentang">Tentang</a></li>
         </ul>
+
+        <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     </nav>
 </header>
