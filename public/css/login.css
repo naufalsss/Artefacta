@@ -5,14 +5,13 @@
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #CD853F 50%, #DEB887 75%, #F5E6D3 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    font-family: 'Merriweather', serif;
+    background: linear-gradient(135deg, #FFF8F0 0%, #F5EEE3 50%, #EFE7DC 100%);
+    color: #3A2A26;
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
     position: relative;
     overflow-x: hidden;
@@ -35,35 +34,30 @@ body {
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(107, 68, 35, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(160, 82, 45, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(205, 133, 63, 0.1) 0%, transparent 50%);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('https://i.ibb.co/yYQhxLp/marble-texture.png');
+    background-size: cover;
+    opacity: 0.05;
     pointer-events: none;
     z-index: 0;
 }
 
 .container {
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
     position: relative;
     z-index: 1;
 }
 
 .auth-wrapper {
-    background: linear-gradient(180deg, #FFF8DC 0%, #FDF5E6 100%);
-    border-radius: 25px;
-    box-shadow: 
-        0 20px 60px rgba(107, 68, 35, 0.4),
-        0 0 0 1px rgba(139, 69, 19, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    background: #FFF8F0;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(62, 44, 35, 0.25), 0 0 0 1px rgba(62, 44, 35, 0.05);
     overflow: hidden;
-    animation: slideUpFade 0.8s ease-out, subtlePulse 4s ease-in-out infinite;
+    border: 1px solid rgba(62, 44, 35, 0.08);
     position: relative;
+    animation: fadeInCard 0.8s ease-out;
 }
 
 /* Switch Link Styling */
@@ -85,6 +79,7 @@ body::before {
 
 .link-btn:hover {
     color: #6B4423;
+    text-decoration: underline;
 }
 
 .link-btn .link-text {
@@ -102,7 +97,7 @@ body::before {
     /* Keep for backward compatibility */
     background: linear-gradient(180deg, #FFF8DC 0%, #FDF5E6 100%);
     border-radius: 25px;
-    box-shadow: 
+    box-shadow:
         0 20px 60px rgba(107, 68, 35, 0.4),
         0 0 0 1px rgba(139, 69, 19, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -112,25 +107,19 @@ body::before {
 }
 
 @keyframes slideUpFade {
-    from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(40px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes subtlePulse {
     0%, 100% {
-        box-shadow: 
+        box-shadow:
             0 20px 60px rgba(107, 68, 35, 0.4),
             0 0 0 1px rgba(139, 69, 19, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
     50% {
-        box-shadow: 
+        box-shadow:
             0 25px 70px rgba(107, 68, 35, 0.5),
             0 0 0 1px rgba(139, 69, 19, 0.15),
             inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -139,12 +128,13 @@ body::before {
 
 .auth-header,
 .login-header {
-    background: linear-gradient(135deg, #6B4423 0%, #8B4513 50%, #A0522D 100%);
-    color: #FFF8DC;
-    padding: 45px 35px;
+    background: linear-gradient(135deg, #8B5E3C 0%, #C19A6B 100%);
+    padding: 50px 35px;
     text-align: center;
+    font-family: 'Playfair Display', serif;
     position: relative;
     overflow: hidden;
+    color: #FAF5EF;
 }
 
 .login-header::before {
@@ -159,22 +149,18 @@ body::before {
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .auth-header h1,
 .login-header h1 {
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     position: relative;
     z-index: 1;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
     letter-spacing: 1px;
     animation: fadeInDown 1s ease-out 0.3s both;
 }
@@ -193,11 +179,10 @@ body::before {
 .auth-header p,
 .login-header p {
     font-size: 15px;
-    opacity: 0.95;
+    opacity: 0.9;
     position: relative;
     z-index: 1;
     font-style: italic;
-    animation: fadeInUp 1s ease-out 0.5s both;
 }
 
 @keyframes fadeInUp {
@@ -213,10 +198,12 @@ body::before {
 
 .auth-form,
 .login-form {
-    padding: 45px 35px;
-    background: #FFF8DC;
-    display: none;
+    padding: 40px 35px;
+    background: #fff8f0;
+    border-top: 1px solid rgba(196, 30, 58, 0.08);
+    border-radius: 0 0 28px 28px;
     animation: fadeInForm 0.5s ease-out;
+    display: none;
 }
 
 .auth-form.active {
@@ -224,19 +211,13 @@ body::before {
 }
 
 @keyframes fadeInForm {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .form-group {
-    margin-bottom: 28px;
-    animation: fadeIn 0.6s ease-out both;
+    margin-bottom: 22px;
+    position: relative;
 }
 
 .form-group:nth-child(1) { animation-delay: 0.1s; }
@@ -246,26 +227,18 @@ body::before {
 .form-group:nth-child(5) { animation-delay: 0.5s; }
 .form-group:nth-child(6) { animation-delay: 0.6s; }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(40px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 10px;
-    color: #6B4423;
+    margin-bottom: 8px;
+    color: #5A3E2B;
     font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
     font-size: 13px;
+    text-transform: uppercase;
 }
 
 .required {
@@ -276,15 +249,15 @@ body::before {
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #DEB887;
-    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid #D2B48C;
+    border-radius: 10px;
     font-size: 15px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #FFF8DC;
-    color: #4A2C17;
-    box-shadow: inset 0 2px 4px rgba(107, 68, 35, 0.1);
+    font-family: 'Lato', sans-serif;
+    background-color: #FEF8F0;
+    color: #4B3621;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 6px rgba(62,44,35,0.06);
 }
 
 .form-group input::placeholder {
@@ -294,14 +267,9 @@ body::before {
 
 .form-group input:focus,
 .form-group select:focus {
-    outline: none;
-    border-color: #8B4513;
-    background-color: #FFFFFF;
-    box-shadow: 
-        0 0 0 4px rgba(139, 69, 19, 0.15),
-        inset 0 2px 4px rgba(107, 68, 35, 0.1),
-        0 4px 12px rgba(107, 68, 35, 0.2);
-    transform: translateY(-2px);
+outline: none;
+    border-color: #C41E3A;
+    box-shadow: 0 4px 12px rgba(196,30,58,0.2);
 }
 
 .form-group input:hover:not(:focus),
@@ -335,8 +303,7 @@ body::before {
 }
 
 .toggle-password:hover {
-    opacity: 1;
-    background: rgba(139, 69, 19, 0.1);
+    background: rgba(196,30,58,0.1);
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -361,24 +328,21 @@ body::before {
 }
 
 .submit-btn {
+    background: #D9C6B0;
+    color: #3E2C23;
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
-    background-size: 200% 200%;
-    color: #FFF8DC;
+    padding: 14px;
     border: none;
     border-radius: 12px;
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(107, 68, 35, 0.4);
-    animation: buttonGlow 3s ease-in-out infinite;
+    box-shadow: 0 6px 18px rgba(62, 44, 35, 0.2);
 }
 
 @keyframes buttonGlow {
@@ -409,14 +373,14 @@ body::before {
 }
 
 .submit-btn:hover {
-    transform: translateY(-3px);
-    background-position: right center;
-    box-shadow: 0 8px 25px rgba(107, 68, 35, 0.5);
+    background: #C4AA91;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(62, 44, 35, 0.25);
 }
 
 .submit-btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(107, 68, 35, 0.4);
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(62, 44, 35, 0.2);
 }
 
 .submit-btn:disabled {
@@ -449,10 +413,11 @@ body::before {
 
 .auth-footer,
 .login-footer {
-    padding: 25px 35px 35px;
     text-align: center;
-    background: #FDF5E6;
-    border-top: 1px solid rgba(139, 69, 19, 0.1);
+    padding: 20px 0;
+    font-size: 13px;
+    color: #7A5A43;
+    font-style: italic;
 }
 
 .auth-footer p,
