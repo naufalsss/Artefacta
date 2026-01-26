@@ -93,6 +93,43 @@
     </div>
 </section>
 
+<!-- MENU SECTION -->
+<section class="section menu" id="menu">
+    <div class="menu-wrapper">
+        <div class="menu-header">
+            <div class="label">Our Selection</div>
+            <h2>Koleksi Menu</h2>
+        </div>
+
+        <div class="menu-grid">
+            @forelse($menus as $menu)
+                <div class="menu-card">
+                    @if($menu->image)
+                        <img src="{{ asset('storage/'.$menu->image) }}" alt="{{ $menu->name }}" class="menu-image">
+                    @else
+                        <div class="menu-image placeholder">No Image</div>
+                    @endif
+                    <div class="menu-info">
+                        <h3>{{ $menu->name }}</h3>
+                        @if($menu->category)
+                            <span class="menu-category">{{ ucfirst($menu->category) }}</span>
+                        @endif
+                        @if($menu->description)
+                            <p class="menu-description">{{ $menu->description }}</p>
+                        @endif
+                        <p class="menu-price">Rp {{ number_format($menu->price) }}</p>
+                        @if($menu->is_signature)
+                            <span class="badge-signature">★ Signature</span>
+                        @endif
+                    </div>
+                </div>
+            @empty
+                <p class="text-center">Belum ada menu yang tersedia.</p>
+            @endforelse
+        </div>
+    </div>
+</section>
+
 
 
 
