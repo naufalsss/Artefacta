@@ -12,7 +12,7 @@
             <li><a href="{{ route('login') }}">Akun</a></li>
             <li><a href="{{ route('home') }}#beranda">Beranda</a></li>
             <li><a href="{{ route('galleries.published') }}">Galeri</a></li>
-            <li><a href="{{ route('home') }}#coffee">Coffee Shop</a></li>
+            <li><a href="{{ route('coffeeshop') }}#coffeeshop">Coffee Shop</a></li>
             <li><a href="{{ route('home') }}#pemesanan">Pemesanan</a></li>
             <li><a href="{{ route('home') }}#tentang">Tentang</a></li>
         </ul>
