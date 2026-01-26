@@ -25,6 +25,25 @@
                 <a href="{{ route('galleries.index') }}" class="btn btn-modern btn-primary">Manage Galleries</a>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Total Menu</h5>
+                <p class="display-6">{{ $menusCount }}</p>
+                <a href="{{ route('admin.menus.index') }}" class="btn btn-modern btn-primary">Manage Menus</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Available Menus</h5>
+                <p class="display-6">{{ $availableMenus }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Signature Menus</h5>
+                <p class="display-6">{{ $signatureMenus }}</p>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

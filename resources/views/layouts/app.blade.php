@@ -84,6 +84,11 @@
                             <i class="fas fa-images"></i> Galleries
                         </a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}" href="{{ route('admin.menus.index') }}">
+                            <i class="fas fa-coffee me-2"></i> Menus
+                        </a>
+                     </li>
                     <li class="nav-item mt-4">
                         <form action="{{ url('/') }}" method="GET" style="display:inline;">
                             <button type="submit" class="btn btn-outline-light btn-sm w-100">
