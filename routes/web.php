@@ -17,9 +17,7 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-Route::get('/', function () {
-    return view('coffeeshop');
-})->name('coffeeshop');
+Route::get('/', [MenuController::class, 'index'])->name('coffeeshop');
 
 // Public Gallery Page
 Route::get('/koleksi-galeri', [GalleryController::class, 'published'])->name('galleries.published');

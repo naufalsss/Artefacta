@@ -15,7 +15,6 @@
 /node_modules
 /public/build
 /public/hot
-/public/storage
 /storage/*.key
 /storage/pail
 /vendor
@@ -23,4 +22,8 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 database.sqlite
-public/foto/
+
+# NOTE: File uploads TRACKED untuk kolaborasi tim
+# - /public/storage (symbolic link - akan dibuat otomatis)
+# - /storage/app/public (folder uploads - TRACKED)
+# - /public/foto (folder foto statis - TRACKED)

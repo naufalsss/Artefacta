@@ -10,6 +10,19 @@ class MenuController extends Controller
 {
     /**
      * =========================
+     * PUBLIC - DISPLAY MENUS
+     * =========================
+     */
+
+    // Display all available menus on coffeeshop page
+    public function index()
+    {
+        $menus = Menu::where('is_available', true)->get();
+        return view('coffeeshop', compact('menus'));
+    }
+
+    /**
+     * =========================
      * ADMIN - MENU MANAGEMENT
      * =========================
      */
