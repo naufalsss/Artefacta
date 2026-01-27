@@ -1,2 +1,3 @@
-*
-!.gitignore
+# Allow all files dalam public/storage
+# Ini adalah symbolic link ke storage/app/public yang berisi uploads
+# File di sini HARUS di-track untuk kolaborasi tim
