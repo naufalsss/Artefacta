@@ -18,9 +18,8 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-Route::get('/coffeeshop', function () {
-    return view('coffeeshop');
-})->name('coffeeshop');
+Route::get('/coffeeshop', [MenuController::class, 'index'])
+    ->name('coffeeshop');
 
 Route::get('/booking', [BookingController::class, 'bookingIndex'])->name('booking.form');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
