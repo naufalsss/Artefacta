@@ -3,169 +3,158 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-    /**
-     * =========================
-     * PUBLIC - DISPLAY MENUS
-     * =========================
-     */
-
-    // Display all available menus on coffeeshop page
+    // =========================
+    // PUBLIC FRONTEND
+    // =========================
     public function index()
     {
-        $menus = Menu::where('is_available', true)->get();
-        return view('coffeeshop', compact('menus'));
+        // All available menus
+        $allMenus = Menu::where('is_available', true)->get();
+
+        // Signature menu
+        $signatureMenus = Menu::where('is_signature', true)
+            ->where('is_available', true)
+            ->get();
+
+        // Limited menus (assuming from 'Menu Terbatas' category)
+        $limitedMenus = Menu::where('is_available', true)
+            ->whereHas('category', function($q){
+                $q->where('name', 'Menu Terbatas');
+            })->get();
+
+        return view('coffeeshop', compact('allMenus', 'signatureMenus', 'limitedMenus'));
     }
 
-    /**
-     * =========================
-     * ADMIN - MENU MANAGEMENT
-     * =========================
-     */
+    // =========================
+    // ADMIN DASHBOARD
+    // =========================
 
-       // LIST + SEARCH + PAGINATION
+    // List menu admin
     public function adminIndex(Request $request)
     {
         $query = Menu::query();
 
-        if ($request->has('search')) {
-            $query->where('name', 'like', '%'.$request->search.'%')
-                ->orWhere('category', 'like', '%'.$request->search.'%');
+        // Search by name
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $menus = $query->paginate(10);
+        $menus = $query->latest()->paginate(9);
 
-        $signatureMenus = Menu::where('is_signature', true)->get();
-        $coffeeMenus = Menu::where('category', 'coffee')->get();
+        $signatureMenus = Menu::where('is_signature', true)->latest()->get();
+        $coffeeMenus = Menu::whereHas('category', fn($q) => $q->where('name','Coffee'))
+                           ->latest()->get();
 
-        return view('admin.menus.index', compact('menus', 'signatureMenus', 'coffeeMenus'));
+        return view('admin.menus.index', compact('menus','signatureMenus','coffeeMenus'));
     }
 
-    public function show(Menu $menu)
-{
-    return view('admin.menus.show', compact('menu'));
-}
-
-
-    // FORM TAMBAH MENU
+    // Form tambah menu
     public function create()
     {
-        return view('admin.menus.create');
+        $categories = Category::all();
+        return view('admin.menus.create', compact('categories'));
     }
 
-    // SIMPAN MENU + IMAGE
+    // Simpan menu
     public function store(Request $request)
     {
-        $request->validate([
-            'name'     => 'required',
-            'price'    => 'required|numeric',
-            'category' => 'required',
-            'image'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        $data = $request->validate([
+            'name' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'description' => 'nullable',
+            'image' => 'nullable|image|max:2048',
         ]);
 
-        $imagePath = null;
+        // Jika checkbox tidak dicentang, set jadi 0. Jika dicentang, set jadi 1.
+        $data['is_signature'] = $request->has('is_signature') ? 1 : 0;
+        $data['is_available'] = $request->has('is_available') ? 1 : 0;
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('menus', 'public');
+            $data['image'] = $request->file('image')->store('menus', 'public');
         }
 
-        Menu::create([
-            'name'         => $request->name,
-            'description'  => $request->description,
-            'price'        => $request->price,
-            'category'     => $request->category,
-            'image'        => $imagePath,
-            'is_signature' => $request->has('is_signature'),
-            'is_available' => $request->has('is_available'),
-        ]);
+        Menu::create($data);
 
-        return redirect()->route('admin.menus.index')
-            ->with('success', 'Menu berhasil ditambahkan');
+        return redirect()->route('menus.index')->with('success', 'Menu berhasil ditambah!');
     }
 
-    // FORM EDIT
+    // Form edit menu
     public function edit(Menu $menu)
     {
-        return view('admin.menus.edit', compact('menu'));
+        $categories = Category::all();
+        return view('admin.menus.edit', compact('menu','categories'));
     }
 
-    // UPDATE MENU + IMAGE
+    // Update menu
     public function update(Request $request, Menu $menu)
     {
         $request->validate([
-            'name'     => 'required',
-            'price'    => 'required|numeric',
-            'category' => 'required',
-            'image'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'name'        => 'required|string|max:255',
+            'description' => 'required|string',
+            'price'       => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
-
-            if ($menu->image && Storage::disk('public')->exists($menu->image)) {
-                Storage::disk('public')->delete($menu->image);
-            }
-
-            $menu->image = $request->file('image')->store('menus', 'public');
+        if($request->hasFile('image')) {
+            if($menu->image) Storage::disk('public')->delete($menu->image);
+            $menu->image = $request->file('image')->store('menus','public');
         }
 
         $menu->update([
-            'name'         => $request->name,
-            'description'  => $request->description,
-            'price'        => $request->price,
-            'category'     => $request->category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
             'is_signature' => $request->has('is_signature'),
             'is_available' => $request->has('is_available'),
         ]);
 
         return redirect()->route('admin.menus.index')
-            ->with('success', 'Menu berhasil diupdate');
+                         ->with('success','Menu berhasil diupdate');
     }
 
-    // HAPUS GAMBAR SAJA
-    public function deleteImage(Menu $menu)
-    {
-        if ($menu->image && Storage::disk('public')->exists($menu->image)) {
-            Storage::disk('public')->delete($menu->image);
-        }
-
-        $menu->update(['image' => null]);
-
-        return back()->with('success', 'Gambar menu dihapus');
-    }
-
-    // HAPUS MENU
+    // Hapus menu
     public function destroy(Menu $menu)
     {
-        if ($menu->image && Storage::disk('public')->exists($menu->image)) {
-            Storage::disk('public')->delete($menu->image);
-        }
-
+        if($menu->image) Storage::disk('public')->delete($menu->image);
         $menu->delete();
-
-        return back()->with('success', 'Menu berhasil dihapus');
+        return back()->with('success','Menu berhasil dihapus');
     }
 
-    // TOGGLE SIGNATURE
+    // Toggle signature
     public function toggleSignature(Menu $menu)
     {
-        $menu->update([
-            'is_signature' => !$menu->is_signature
-        ]);
-
-        return response()->json(['success' => true]);
+        $menu->update(['is_signature' => !$menu->is_signature]);
+        return response()->json(['success'=>true]);
     }
 
-    // TOGGLE AVAILABLE
+    // Toggle available
     public function toggleAvailable(Menu $menu)
     {
-        $menu->update([
-            'is_available' => !$menu->is_available
-        ]);
+        $menu->update(['is_available' => !$menu->is_available]);
+        return response()->json(['success'=>true]);
+    }
 
-        return response()->json(['success' => true]);
+    // =========================
+    // API
+    // =========================
+    public function apiShow(Menu $menu)
+    {
+        return response()->json([
+            'id' => $menu->id,
+            'name' => $menu->name,
+            'description' => $menu->description,
+            'price' => $menu->price,
+            'image' => $menu->image
+        ]);
     }
 }
+

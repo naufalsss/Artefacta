@@ -44,6 +44,25 @@
                 <p class="display-6">{{ $signatureMenus }}</p>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Total Bookings</h5>
+                <p class="display-6">{{ $bookingsCount }}</p>
+                <a href="{{ route('admin.bookings.index') }}" class="btn btn-modern btn-primary">Manage Bookings</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Today's Bookings</h5>
+                <p class="display-6">{{ $todayBookings }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5>Total Tickets Sold</h5>
+                <p class="display-6">{{ $totalTickets }}</p>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
