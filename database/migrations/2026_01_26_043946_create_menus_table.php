@@ -5,10 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    
-    /**
-     * Run the migrations.
-     */
 
     public function up(): void
     {
@@ -17,7 +13,7 @@ return new class extends Migration {
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
-            $table->string('category');
+            $table->string('category'); // coffee / non-coffee / signature
             $table->string('image')->nullable();
             $table->boolean('is_signature')->default(false);
             $table->boolean('is_available')->default(true);
@@ -25,9 +21,6 @@ return new class extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('menus');

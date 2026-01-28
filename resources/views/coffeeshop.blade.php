@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/coffeeshop.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Coffee Shop</title>
 </head>
 <body>
@@ -93,48 +94,75 @@
     </div>
 </section>
 
-<!-- MENU SECTION -->
-<section class="section menu" id="menu">
-    <div class="menu-wrapper">
-        <div class="menu-header">
-            <div class="label">Our Selection</div>
-            <h2>Koleksi Menu</h2>
-        </div>
+<div class="menu-exhibition">
+  <div class="exhibition-container-full">
 
-        <div class="menu-grid">
-            @forelse($menus as $menu)
-                <div class="menu-card">
-                    @if($menu->image)
-                        <img src="{{ asset('storage/'.$menu->image) }}" alt="{{ $menu->name }}" class="menu-image">
-                    @else
-                        <div class="menu-image placeholder">No Image</div>
-                    @endif
-                    <div class="menu-info">
-                        <h3>{{ $menu->name }}</h3>
-                        @if($menu->category)
-                            <span class="menu-category">{{ ucfirst($menu->category) }}</span>
-                        @endif
-                        @if($menu->description)
-                            <p class="menu-description">{{ $menu->description }}</p>
-                        @endif
-                        <p class="menu-price">Rp {{ number_format($menu->price) }}</p>
-                        @if($menu->is_signature)
-                            <span class="badge-signature">★ Signature</span>
-                        @endif
-                    </div>
-                </div>
-            @empty
-                <p class="text-center">Belum ada menu yang tersedia.</p>
-            @endforelse
+    {{-- ===== MENU CONTENT ===== --}}
+    <div class="exhibition-gallery-full">
+
+      {{-- ALL MENU --}}
+      <div class="gallery-header-inline">
+        <h3 class="gallery-title-inline">Our Menu</h3>
+      </div>
+      <div class="artifacts-grid-all">
+        @php $index = 0; @endphp
+        @foreach($allMenus->chunk(2) as $menuPair)
+          @foreach($menuPair as $menu)
+            <div class="artifact-card-all menu-card" data-menu-id="{{ $menu->id }}" data-index="{{ $index }}">
+              <div class="artifact-image-left">
+                @if($menu->image && file_exists(storage_path('app/public/'.$menu->image)))
+                  <img class="artifact-image" src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}">
+                @else
+                  <div class="artifact-image-placeholder"></div>
+                @endif
+                @if($menu->is_signature)
+                  <div class="signature-badge-main">Signature</div>
+                @endif
+              </div>
+              <div class="artifact-info-right">
+                <h4 class="artifact-name">{{ $menu->name }}</h4>
+                <p class="artifact-description">{{ Str::limit($menu->description, 80) }}</p>
+                <div class="artifact-price">Rp {{ number_format($menu->price,0,',','.') }}</div>
+              </div>
+            </div>
+            @php $index++; @endphp
+          @endforeach
+        @endforeach
+      </div>
+
+      <!-- MODAL DETAIL MENU -->
+      <div id="menuModal" class="menu-modal">
+        <div class="menu-modal-overlay" onclick="closeMenuModal()"></div>
+        <div class="menu-modal-content">
+          <button class="menu-modal-close" onclick="closeMenuModal()">&times;</button>
+          <div class="menu-modal-body">
+            <div class="menu-modal-image">
+              <img id="modalMenuImage" src="" alt="" class="modal-image">
+            </div>
+            <div class="menu-modal-info">
+              <h2 id="modalMenuName" class="modal-menu-name"></h2>
+              <p id="modalMenuDescription" class="modal-menu-description"></p>
+              <div class="modal-menu-price">Rp <span id="modalMenuPrice"></span></div>
+              <div class="modal-menu-actions">
+                <button class="btn-order-kasir">
+                  <i class="fas fa-cash-register"></i> Pesan ke Kasir
+                </button>
+                <button class="btn-add-cart">
+                  <i class="fas fa-shopping-cart"></i> Masukkan ke Keranjang
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-
-
-
+</div>
 @include('layouts.footer')
 
-<script src="{{ asset('js/coffeeshop.js') }}"></script>
+
+<script src="{{asset('js/coffeeshop.js')}}"></script>
 </body>
 </html>

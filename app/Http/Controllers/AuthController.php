@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     // =====================
+    // SHOW LOGIN FORM
+    // =====================
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    // =====================
     // DAFTAR
     // =====================
     public function daftar(Request $request)
@@ -45,26 +53,15 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            $user = Auth::user();
-            $redirectUrl = $user->role === 'admin' ? route('artifacts.index') : route('home');
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Login berhasil',
-                'redirect' => $redirectUrl,
-            ]);
+            return redirect()->intended('dashboard');
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Email atau password salah',
-        ], 401);
+        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
     // =====================
@@ -73,9 +70,26 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 
-        return redirect()->route('home')->with('success', 'Logout berhasil');
+    // =====================
+    // REGISTER
+    // =====================
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8', // Tambahkan 'confirmed' jika ada input password_confirmation
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }

@@ -17,29 +17,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(CategorySeeder::class);
         $this->call(MenuSeeder::class);
 
         // Create admin user
         User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
+            'name' => 'Mohammad Naufal Murfid',
+            'email' => 'mohammadnaufalmurfid@gmail.com',
             'jenis_kelamin' => 'Laki-laki',
-            'umur' => 30,
+            'umur' => 18,
             'status' => 'active',
             'role' => 'admin',
-            'password' => bcrypt('password123'),
+            'password' => bcrypt('naufal123#'),
         ]);
 
-        // Create regular user
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Aurellia Ledy Ulhaq',
+            'email' => 'aurellialedyul05122gmail.com',
             'jenis_kelamin' => 'Perempuan',
-            'umur' => 25,
+            'umur' => 19,
             'status' => 'active',
-            'role' => 'user',
-            'password' => bcrypt('password123'),
+            'role' => 'admin',
+            'password' => bcrypt('aurel0512'),
         ]);
+
 
         // Create sample artifacts
         $artifacts = [
