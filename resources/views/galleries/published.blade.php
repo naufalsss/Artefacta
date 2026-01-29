@@ -184,13 +184,13 @@
         @if($galleries->count() > 0)
             <div class="gallery-grid reveal">
                 @foreach($galleries as $gallery)
-                <a href="{{ Storage::url($gallery->image_path) }}" class="gallery-card glightbox" data-gallery="gallery">
+                <a href="{{ asset('storage/'.$gallery->image_path) }}" class="gallery-card glightbox" data-gallery="gallery">
                     <div class="gallery-card-image">
                         @if($gallery->image_path)
                             @if($gallery->crop_width && $gallery->crop_height)
-                                <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}" style="position: absolute; left: -{{ $gallery->crop_x ?? 0 }}px; top: -{{ $gallery->crop_y ?? 0 }}px; width: auto; height: auto; min-width: calc(100% + {{ $gallery->crop_x ?? 0 }}px); min-height: calc(100% + {{ $gallery->crop_y ?? 0 }}px);">
+                                <img src="{{ asset('storage/'.$gallery->image_path) }}" alt="{{ $gallery->title }}" style="position: absolute; left: -{{ $gallery->crop_x ?? 0 }}px; top: -{{ $gallery->crop_y ?? 0 }}px; width: auto; height: auto; min-width: calc(100% + {{ $gallery->crop_x ?? 0 }}px); min-height: calc(100% + {{ $gallery->crop_y ?? 0 }}px);">
                             @else
-                                <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}">
+                                <img src="{{ asset('storage/'.$gallery->image_path) }}" alt="{{ $gallery->title }}">
                             @endif
                         @else
                             <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f0f0f0;">
