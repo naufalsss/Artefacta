@@ -42,8 +42,10 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Akun berhasil dibuat',
+            'redirect' => route('login'),
+            'message' => 'Akun berhasil dibuat'
         ]);
+
     }
 
     // =====================
@@ -75,25 +77,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-    }
-
-    // =====================
-    // REGISTER
-    // =====================
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8', // Tambahkan 'confirmed' jika ada input password_confirmation
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }
