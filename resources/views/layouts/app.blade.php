@@ -70,17 +70,17 @@
                 </h4>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a class="nav-link {{ request()->routeIs('artifacts.*') ? 'active' : '' }}" href="{{ route('artifacts.index') }}">
+                        <a class="nav-link {{ request()->routeIs('admin.artifacts.*') ? 'active' : '' }}" href="{{ route('admin.artifacts.index') }}">
                             <i class="fas fa-box"></i> Artifacts
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                        <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                             <i class="fas fa-users"></i> Users
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link {{ request()->routeIs('galleries.*') ? 'active' : '' }}" href="{{ route('galleries.index') }}">
+                        <a class="nav-link {{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}" href="{{ route('admin.galleries.index') }}">
                             <i class="fas fa-images"></i> Galleries
                         </a>
                     </li>
@@ -90,7 +90,8 @@
                         </a>
                      </li>
                     <li class="nav-item mt-4">
-                        <form action="{{ url('/') }}" method="GET" style="display:inline;">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
                             <button type="submit" class="btn btn-outline-light btn-sm w-100">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </button>

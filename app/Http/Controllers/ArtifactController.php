@@ -21,7 +21,7 @@ class ArtifactController extends Controller
      */
     public function create()
     {
-        return view('artifacts.create');
+        return view('admin.artifacts.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class ArtifactController extends Controller
      */
     public function show(Artifact $artifact)
     {
-        return view('artifacts.show', compact('artifact'));
+        return view('admin.artifacts.show', compact('artifact'));
     }
 
     /**
@@ -52,7 +52,7 @@ class ArtifactController extends Controller
      */
     public function edit(Artifact $artifact)
     {
-        return view('artifacts.edit', compact('artifact'));
+        return view('admin.artifacts.edit', compact('artifact'));
     }
 
     /**
@@ -77,6 +77,6 @@ class ArtifactController extends Controller
     {
         $artifact->delete();
 
-        return redirect()->route('artifacts.index')->with('success', 'Artifact deleted successfully.');
+        return redirect()->route('admin.artifacts.index')->with('success', 'Artifact deleted successfully.');
     }
 }

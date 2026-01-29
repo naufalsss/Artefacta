@@ -9,6 +9,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CoffeeshopController;
 
 Route::get('/', function () {
     return view('home');
@@ -48,13 +49,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('artifacts', ArtifactController::class);
     Route::resource('galleries', GalleryController::class);
     Route::resource('menus', MenuController::class);
-    Route::resource('bookings', BookingController::class)->except(['create', 'store'])->names([
-        'index' => 'admin.bookings.index',
-        'show' => 'admin.bookings.show',
-        'edit' => 'admin.bookings.edit',
-        'update' => 'admin.bookings.update',
-        'destroy' => 'admin.bookings.destroy',
-    ]);
+    Route::resource('bookings', BookingController::class)->except(['create', 'store']);
+        #'index' => 'admin.bookings.index',
+        #'show' => 'admin.bookings.show',
+        #'edit' => 'admin.bookings.edit',
+        #'update' => 'admin.bookings.update',
+        #'destroy' => 'admin.bookings.destroy',
 });
 
 // User routes

@@ -30,10 +30,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('users.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Users
                 </a>
-                <a href="{{ route('users.edit', $user) }}" class="btn btn-warning">
+                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning">
                     <i class="fas fa-edit"></i> Edit User
                 </a>
             </div>

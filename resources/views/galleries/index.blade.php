@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Storage; @endphp
 @extends('layouts.app')
 
 @section('content')
@@ -25,7 +26,11 @@
         <div class="card h-100">
             @if($gallery->image_path)
             <div class="card-img-top" style="height: 200px; overflow: hidden;">
-                <img src="{{ asset('storage/'.$gallery->image_path) }}" alt="{{ $gallery->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                <img 
+                    src="{{ Storage::url($gallery->image_path) }}" 
+                    alt="{{ $gallery->title }}" 
+                    style="width: 100%; height: 100%; object-fit: cover;"
+                >
             </div>
             @else
             <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">

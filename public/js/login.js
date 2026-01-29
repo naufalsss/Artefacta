@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setup form validation and submission
     setupForm(daftarForm, 'daftar');
-    setupForm(loginForm, 'login');
+    //setupForm(loginForm, 'login');
 
     function setupForm(form, formType) {
         if (!form) return;
