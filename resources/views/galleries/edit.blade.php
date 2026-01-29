@@ -31,7 +31,7 @@
                 <button type="submit" class="btn btn-primary btn-modern">
                     <i class="fas fa-save"></i> Update Gallery Item
                 </button>
-                <a href="{{ route('galleries.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.galleries.index') }}" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>

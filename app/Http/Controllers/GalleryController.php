@@ -73,7 +73,7 @@ class GalleryController extends Controller
 
         Gallery::create($data);
 
-        return Redirect::route('galleries.index')->with('success', 'Gallery item created successfully.');
+        return Redirect::route('admin.galleries.index')->with('success', 'Gallery item created successfully.');
     }
 
     /**
@@ -133,7 +133,7 @@ class GalleryController extends Controller
 
         $gallery->update($data);
 
-        return Redirect::route('galleries.index')->with('success', 'Gallery item updated successfully.');
+        return Redirect::route('admin.galleries.index')->with('success', 'Gallery item updated successfully.');
     }
 
     /**
@@ -145,6 +145,6 @@ class GalleryController extends Controller
             Storage::disk('public')->delete($gallery->image_path);
         }
         $gallery->delete();
-        return Redirect::route('galleries.index')->with('success', 'Gallery item deleted successfully.');
+        return Redirect::route('admin.galleries.index')->with('success', 'Gallery item deleted successfully.');
     }
 }

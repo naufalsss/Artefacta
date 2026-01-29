@@ -6,7 +6,7 @@
         <h2 class="mb-4">
             <i class="fas fa-users text-primary"></i> Manage Users
         </h2>
-        <a href="{{ route('users.create') }}" class="btn btn-success btn-modern">
+        <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-modern">
             <i class="fas fa-user-plus"></i> Add New User
         </a>
     </div>
@@ -49,13 +49,13 @@
                         </span>
                     </td>
                     <td>
-                        <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">
+                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
