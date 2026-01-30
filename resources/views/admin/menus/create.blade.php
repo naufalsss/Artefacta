@@ -5,7 +5,7 @@
     <h1 class="mb-4">Tambah Menu Baru</h1>
 
     <div class="card shadow-sm p-4" style="max-width:700px;">
-        <form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.menus.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             {{-- Nama Menu --}}
@@ -86,7 +86,7 @@
             {{-- Buttons --}}
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-primary">Simpan Menu</button>
-                <a href="{{ route('menus.index') }}" class="btn btn-secondary">Batal</a>
+                <a href="{{ route('admin.menus.index') }}" class="btn btn-secondary">Batal</a>
             </div>
         </form>
     </div>

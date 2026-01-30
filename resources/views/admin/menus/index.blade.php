@@ -13,7 +13,7 @@
 </div>
 
 {{-- SEARCH --}}
-<form method="GET" action="{{ route('menus.index') }}" class="mb-4 d-flex gap-2">
+<form method="GET" action="{{ route('admin.menus.index') }}" class="mb-4 d-flex gap-2">
     <input type="text" name="search" class="form-control" placeholder="Cari menu..." value="{{ request('search') }}">
     <button type="submit" class="btn btn-secondary">Cari</button>
 </form>
@@ -49,9 +49,9 @@
 
             {{-- CARD FOOTER --}}
             <div class="card-footer bg-white border-0 d-flex gap-2">
-                <a href="{{ route('menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
-                <a href="{{ route('menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{ route('menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
+                <a href="{{ route('admin.menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
+                <a href="{{ route('admin.menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ route('admin.menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Yakin hapus menu?')" class="btn btn-danger btn-sm">Delete</button>
@@ -91,9 +91,9 @@
                 @endif
             </div>
             <div class="card-footer bg-white border-0 d-flex gap-2">
-                <a href="{{ route('menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
-                <a href="{{ route('menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{ route('menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
+                <a href="{{ route('admin.menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
+                <a href="{{ route('admin.menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ route('admin.menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Yakin hapus menu?')" class="btn btn-danger btn-sm">Delete</button>
@@ -127,9 +127,9 @@
                 @endif
             </div>
             <div class="card-footer bg-white border-0 d-flex gap-2">
-                <a href="{{ route('menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
-                <a href="{{ route('menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{ route('menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
+                <a href="{{ route('admin.menus.show',$menu->id) }}" class="btn btn-info btn-sm">View</a>
+                <a href="{{ route('admin.menus.edit',$menu->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ route('admin.menus.destroy',$menu->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Yakin hapus menu?')" class="btn btn-danger btn-sm">Delete</button>
