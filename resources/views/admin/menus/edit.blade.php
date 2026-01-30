@@ -26,7 +26,7 @@
         {{-- RIGHT: Form Input --}}
         <div class="col-md-8">
             {{-- Sesuaikan Route Admin --}}
-            <form action="{{ isset($menu) ? route('menus.update', $menu->id) : route('menus.store') }}"
+            <form action="{{ isset($menu) ? route('admin.menus.update', $menu->id) : route('menus.store') }}"
                   method="POST" enctype="multipart/form-data">
                 @csrf
                 @if(isset($menu)) @method('PUT') @endif
@@ -96,7 +96,7 @@
 
                 <div class="d-flex gap-2 mb-5">
                     <button type="submit" class="btn btn-primary px-4">{{ isset($menu) ? 'Update' : 'Save' }}</button>
-                    <a href="{{ route('menus.index') }}" class="btn btn-secondary px-4">Cancel</a>
+                    <a href="{{ route('admin.menus.index') }}" class="btn btn-secondary px-4">Cancel</a>
                 </div>
             </form>
         </div>
