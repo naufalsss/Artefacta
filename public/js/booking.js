@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== HAMBURGER MENU =====
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
     // ===== STEP NAVIGATION =====
     const stepItems = document.querySelectorAll('.step-item');
     const bookingSections = document.querySelectorAll('.booking-section');

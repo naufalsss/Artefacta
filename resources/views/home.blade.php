@@ -26,7 +26,13 @@
 
         <a href="#galeri" class="hero-btn light-btn">Jelajahi Koleksi</a>
     </div>
+
+    <!-- Moving lights for lively atmosphere -->
+    <div class="moving-light-2"></div>
+    <div class="moving-light-3"></div>
 </section>
+
+
 
 <!-- GALERI -->
 <section class="museum-gallery reveal" id="galeri">

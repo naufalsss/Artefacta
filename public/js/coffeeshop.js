@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 4000);
 });
 
+// Navbar scroll effect
+window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+        navbar.classList.toggle("scrolled", window.scrollY > 50);
+    }
+});
+
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const reveals = document.querySelectorAll(
         ".hero-artifact, .concept-text, .connection-text, .artifact"
