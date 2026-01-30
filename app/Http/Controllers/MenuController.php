@@ -82,7 +82,7 @@ class MenuController extends Controller
 
         Menu::create($data);
 
-        return redirect()->route('menus.index')->with('success', 'Menu berhasil ditambah!');
+        return redirect()->route('admin.menus.index')->with('success', 'Menu berhasil ditambah!');
     }
 
     // Form edit menu

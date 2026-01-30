@@ -48,7 +48,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('users', AdminUserController::class);
     Route::resource('artifacts', ArtifactController::class);
     Route::resource('galleries', GalleryController::class);
-    Route::resource('menus', MenuController::class);
+    Route::resource('menus', MenuController::class)->except(['index']);
+    Route::get('menus', [MenuController::class, 'adminIndex'])->name('menus.index');
     Route::resource('bookings', BookingController::class)->except(['create', 'store']);
         #'index' => 'admin.bookings.index',
         #'show' => 'admin.bookings.show',
