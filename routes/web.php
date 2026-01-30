@@ -19,6 +19,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/tentang', function () {
+    return view('tentang');
+})->name('tentang');
+
 Route::get('/coffeeshop', [MenuController::class, 'index'])
     ->name('coffeeshop');
 

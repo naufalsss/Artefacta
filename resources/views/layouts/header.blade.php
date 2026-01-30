@@ -14,8 +14,10 @@
             <li><a href="{{ route('galleries.published') }}">Galeri</a></li>
             <li><a href="{{ route('coffeeshop') }}#coffeeshop">Coffee Shop</a></li>
             <li><a href="{{ route('booking') }}">Pemesanan</a></li>
-            <li><a href="{{ route('home') }}#tentang">Tentang</a></li>
+            <li><a href="{{ route('tentang') }}">Tentang</a></li>
         </ul>
+
+
 
         <div class="hamburger">
         <span></span>

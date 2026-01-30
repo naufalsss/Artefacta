@@ -33,10 +33,18 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 20px 8%;
-    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 244, 239, 0.95) 50%, rgba(255, 255, 255, 0.95) 100%);
+    background-size: 200% 100%;
+    animation: gradientShift 8s ease-in-out infinite;
     backdrop-filter: blur(12px);
     transition: all 0.4s ease;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .navbar.scrolled {
@@ -99,6 +107,18 @@ header {
     gap: 28px;
     list-style: none;
     align-items: center;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* NAV LINKS — Modern Museum */
@@ -149,12 +169,48 @@ header {
     font-weight: 600;
 }
 
+/* SOCIAL ICONS */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C41E3A, #E85D04);
+    color: #FFF8F0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+}
+
+.social-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+}
+
+.social-icon.instagram:hover {
+    background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+}
+
+.social-icon.facebook:hover {
+    background: linear-gradient(135deg, #3b5998, #8b9dc3);
+}
+
 /* HAMBURGER MENU — MOBILE */
 .hamburger {
     display: none;
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    animation: fadeInUp 1s ease-out 0.9s both;
 }
 
 .hamburger span {
@@ -163,6 +219,19 @@ header {
     width: 25px;
     background: #7A1E33;
     border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* =========================
@@ -219,6 +288,103 @@ header {
     );
     filter: blur(80px);
     z-index: 0;
+}
+
+/* MOVING LIGHTS FOR LIVELY ATMOSPHERE */
+.museum-hero::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+        circle,
+        rgba(232, 93, 4, 0.15),
+        transparent 70%
+    );
+    filter: blur(40px);
+    z-index: 0;
+    animation: floatingLight1 8s ease-in-out infinite;
+}
+
+@keyframes floatingLight1 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-20px, 40px) scale(0.9);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(40px, 20px) scale(1.05);
+        opacity: 0.7;
+    }
+}
+
+/* SECOND MOVING LIGHT */
+.museum-hero .moving-light-2 {
+    position: absolute;
+    bottom: 30%;
+    left: 15%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(
+        circle,
+        rgba(196, 30, 58, 0.12),
+        transparent 70%
+    );
+    filter: blur(35px);
+    z-index: 0;
+    animation: floatingLight2 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatingLight2 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    33% {
+        transform: translate(-25px, -30px) scale(1.2);
+        opacity: 0.7;
+    }
+    66% {
+        transform: translate(35px, 25px) scale(0.8);
+        opacity: 0.3;
+    }
+}
+
+/* THIRD MOVING LIGHT */
+.museum-hero .moving-light-3 {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(
+        circle,
+        rgba(232, 93, 4, 0.1),
+        transparent 70%
+    );
+    filter: blur(30px);
+    z-index: 0;
+    animation: floatingLight3 12s ease-in-out infinite;
+}
+
+@keyframes floatingLight3 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translate(20px, -40px) scale(1.3);
+        opacity: 0.8;
+    }
 }
 
 /* CONTENT */
@@ -300,6 +466,8 @@ header {
     background: #7A1E33;
     color: #FFF8F0;
 }
+
+
 
 /* =========================
    MUSEUM GALLERY — MODERN WARM
@@ -624,7 +792,7 @@ header {
     box-shadow: 0 20px 60px rgba(0,0,0,0.16);
     border: 3px solid #FFF3E8;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-    height: auto; 
+    height: auto;
 }
 
 .location-map iframe {

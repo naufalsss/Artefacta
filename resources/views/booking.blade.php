@@ -299,41 +299,9 @@
     </div>
 </section>
 
-<!-- SUCCESS MODAL -->
-<div id="success-modal" class="success-modal">
-    <div class="success-modal-overlay"></div>
-    <div class="success-modal-content">
-        <div class="success-header">
-            <h2>🎉 Pemesanan Berhasil!</h2>
-            <p>Kode Booking: <strong id="booking-code"></strong></p>
-        </div>
-
-        <div class="success-details">
-            <div class="success-qr">
-                <div class="qr-placeholder">
-                    <i class="fas fa-qrcode"></i>
-                    <p>QR Code</p>
-                </div>
-            </div>
-            <div class="success-info">
-                <h3>Informasi Pengambilan</h3>
-                <ul>
-                    <li><strong>Tiket:</strong> Tunjukkan kode booking di loket museum</li>
-                    <li><strong>Coffee Shop:</strong> Ambil pesanan di counter coffee shop</li>
-                    <li><strong>Waktu:</strong> Sesuai jadwal kunjungan yang dipilih</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="success-actions">
-            <button class="btn-primary" onclick="closeSuccessModal()">Tutup</button>
-            <button class="btn-outline" onclick="printBooking()">Cetak Detail</button>
-        </div>
-    </div>
-</div>
-
 @include('layouts.footer')
 
 <script src="{{ asset('js/booking.js') }}"></script>
 </body>
 </html>
+
