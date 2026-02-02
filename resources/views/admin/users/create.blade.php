@@ -64,6 +64,30 @@
                                 <option value="Lainnya">Other</option>
                             </select>
                         </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-toggle-on"></i> Keaktifan Akun
+                            </label>
+
+                            <div class="d-flex gap-3 mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="keaktifan" id="aktif" >
+                                    <label class="form-check-label" for="aktif">
+                                        Aktif
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="keaktifan" id="nonaktif" >
+                                    <label class="form-check-label" for="nonaktif">
+                                        Non Aktif
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-md-4 mb-3">
                             <label for="role" class="form-label">
                                 <i class="fas fa-shield-alt"></i> Role

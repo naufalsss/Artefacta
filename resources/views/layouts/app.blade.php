@@ -40,6 +40,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            margin: 20px;
         }
         .card:hover {
             transform: translateY(-5px);

@@ -31,6 +31,7 @@
                     <th><i class="fas fa-birthday-cake"></i> Age</th>
                     <th><i class="fas fa-user-tag"></i> Status</th>
                     <th><i class="fas fa-shield-alt"></i> Role</th>
+                    <th><i class="fas fa-user-stat"></i> Keaktifan</th>
                     <th><i class="fas fa-cogs"></i> Actions</th>
                 </tr>
             </thead>
@@ -43,11 +44,15 @@
                     <td>{{ $user->jenis_kelamin }}</td>
                     <td>{{ $user->umur }}</td>
                     <td>{{ $user->status }}</td>
+
                     <td>
                         <span class="badge bg-{{ $user->role === 'admin' ? 'danger' : 'secondary' }}">
                             {{ ucfirst($user->role) }}
                         </span>
                     </td>
+
+                    <td><span></span></td>
+
                     <td>
                         <a href="{{ route('admin.users.show', $user) }}" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i>
